@@ -1,4 +1,4 @@
-import { MbText, MbInfoCard, MbAmountInput, MbButton, EState } from 'mintbase-ui';
+import { MbText, MbInfoCard, MbAmountInput, MbButton, EState, ESize } from 'mintbase-ui';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 import { useLazyQuery } from '@apollo/client'
@@ -30,7 +30,7 @@ const LoadingSaleCard = () => (
 
 const BuyModal = ({ closeModal, item }: { closeModal: () => void, item: StoreThing}) => {
   const { wallet, signIn } = useWallet()
-  const { thingId } = item;
+  const { thingId, title } = item;
 
   const [currentNearPrice, setCurrentNearPrice] = useState('0')
   const [thingTokens, setThingTokens] = useState([])
@@ -45,6 +45,10 @@ const BuyModal = ({ closeModal, item }: { closeModal: () => void, item: StoreThi
 
   const price = listThing?.price;
   const amountAvailable = listThing?.tokensListedSaleCounter;
+  console.log(listThing);
+  console.log('########');
+  console.log(item);
+
   const tokensTotal = listThing?.tokensTotal;
   const tokenId = listThing?.tokenId;
 
@@ -158,15 +162,15 @@ const BuyModal = ({ closeModal, item }: { closeModal: () => void, item: StoreThi
       <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
       <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-        <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div className="bg-slate-900 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div className="mt-3 ml-2 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <div className="flex flex-row items-center justify-between w-full border-b-2">
-              <h3 className="text-md leading-6 font-medium text-gray-900" id="modal-title">
-                Simple Sale
+            <div className="flex flex-row items-center justify-between w-full border-black border-b-2">
+              <h3 className="text-md leading-6 font-medium text-gray" id="modal-title">
+                Membership Purchase
               </h3>
               <button
                 type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md hover:border-2 hover:border-primary text-gray-400 hover:text-primary focus:outline focus:text-gray-500 transition duration-150 ease-in-out"
+                className="inline-flex items-center justify-center p-2 rounded-md border-2 border-slate-900 hover:border-black text-gray-400 hover:text-primary focus:outline focus:text-gray-500 transition duration-150 ease-in-out"
                 onClick={() => closeModal()}
                 aria-label="Close"
               >
@@ -208,7 +212,7 @@ const BuyModal = ({ closeModal, item }: { closeModal: () => void, item: StoreThi
                           }}
                         />
                         <div className="mt-4">
-                          <MbText className="text-gray-700 mb-2">
+                          <MbText className="text-gray mb-2">
                             Quantity
                           </MbText>
                           <MbAmountInput
@@ -217,6 +221,7 @@ const BuyModal = ({ closeModal, item }: { closeModal: () => void, item: StoreThi
                               setValue('amount', Number(amount))
                             }}
                             disabled={amountAvailable === 1}
+                            btnSize={ESize.BIG}
                           />
                         </div>
                       </div>

@@ -170,6 +170,8 @@ const useListThingController = ({ id, price, tokensTotal, tokensCounter }: Thing
     // list data
     const [list] = data.list
 
+    console.log(data.metadata[0].metadata);
+
     const mTokensListedSaleCounter = data.simpleSaleCount.aggregate.count
     const mTokensListedAuctionCounter = data.rollingAuctionCount.aggregate.count
     const mTokensTotal = data.tokens_aggregate.aggregate.count
