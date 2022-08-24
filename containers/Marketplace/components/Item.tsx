@@ -6,7 +6,7 @@ const Item = ({ item, showModal }: {item: StoreThing, showModal: (item: StoreThi
     <div className="bg-slate-900 rounded shadow-lg p-4 relative">
       <img src={item.media} className="w-full h-72 object-cover"></img>
       <div className="">
-        <div className="text-xl text-gray-800 font-bold">{item.title}</div>
+        <div className="text-xl text-white mt-1 font-bold">{item.title}</div>
         <div className="text-sm">{item.storeId}</div>
       </div>
       <div className="flex items-center mt-2 justify-end">

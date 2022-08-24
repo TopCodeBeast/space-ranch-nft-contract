@@ -10,7 +10,7 @@ const Footer = () => {
       </div>
       {/** login/logout with wallet */}
       <div className="flex items-center mr-2">
-        thing 1
+        &nbsp;
       </div>
     </nav>
   )
