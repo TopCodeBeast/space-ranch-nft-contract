@@ -1,15 +1,4 @@
-import { MbText, MbInfoCard, MbAmountInput, MbButton, EState, ESize } from 'mintbase-ui';
-import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form'
-import { useLazyQuery } from '@apollo/client'
-
-import { StoreThing } from "../controllers/useMarketplaceController";
-import { GET_THING, GET_TOKEN_LIST, useListThingController } from '../controllers/useThingController';
-import { bigToNear, nearToYocto } from '../../../lib/numbers'
-import { TransactionEnum } from '../utils/types'
-import { useWallet } from "../../../services/providers/WalletProvider"
-
-const MED_GAS = '300000000000000';
+import { MbText, MbButton, } from 'mintbase-ui';
 
 const ConfirmationModal = ({ transactionHashes }: { transactionHashes: any}) => {
     const handleHashClick = ()=>{
@@ -36,8 +25,8 @@ const ConfirmationModal = ({ transactionHashes }: { transactionHashes: any}) => 
                 <br/>
                 Purchase Confirmation / Transaction Hash:
               </h3>
-              <div className="bg-gray-50 py-4 text-center">
-                    <MbText className="p-med-90 text-gray-700 cursor-pointer" onClick={handleHashClick}>
+              <div className="bg-gray-50 py-4 text-center cursor-pointer" onClick={handleHashClick}>
+                    <MbText className="p-med-90 text-gray-700">
                         <span>{transactionHashes}</span>
                     </MbText>
                 </div>

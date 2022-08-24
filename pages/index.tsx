@@ -10,14 +10,20 @@ import BuyModal from "../containers/Marketplace/components/BuyModal";
 import MembershipTiers from "../containers/Marketplace/components/MembershipTiers";
 import { StoreThing } from "../containers/Marketplace/controllers/useMarketplaceController";
 import ConfirmationModal from "../containers/Marketplace/components/ConfirmationModal";
+import TermsOfService from "../containers/Marketplace/components/TermsOfService";
 
 const Store: NextPage = () => {
   const [showBuyModal, setShowBuyModal] = useState(false);
-  //const [transactionHashConfirmtaion, setTransactionHashConfirmation] = useState("");
+  const [showTermsModal, setShowTermsModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState({} as StoreThing);
 
-  const handleOpenBuyModal = (item: StoreThing) => {
+  const handleOpenTermsModal = (item: StoreThing) => {
     setSelectedItem(item);
+    setShowTermsModal(true);
+  }
+
+  const handleOpenBuyModal = () => {
+    setShowTermsModal(false);
     setShowBuyModal(true);
   }
 
@@ -25,10 +31,12 @@ const Store: NextPage = () => {
     setSelectedItem({} as StoreThing);
     setShowBuyModal(false);
   }
+
+  const handleCloseTermsModal = () => {
+    setSelectedItem({} as StoreThing);
+    setShowTermsModal(false);
+  }
   const { query } = useRouter();
-  //const params = router.query;
-  console.log('foo');
-  console.log(query);
   const transactionHashes: any = query.transactionHashes;
 
   return (
@@ -38,12 +46,13 @@ const Store: NextPage = () => {
         <HeroSection />
       </div>
       <div className="flex w-full">
-        <Items showModal={handleOpenBuyModal} />
+        <Items showModal={handleOpenTermsModal} />
       </div>
       <MembershipTiers />
       <div className="mx-4 md:mx-24 md:mt-4">
+        {showTermsModal && <TermsOfService closeModal={handleCloseTermsModal} continuePurchase={handleOpenBuyModal} />}
         {showBuyModal && <BuyModal closeModal={handleCloseBuyModal} item={selectedItem} />}
-        {transactionHashes && <ConfirmationModal closeModal={handleCloseBuyModal} transactionHashes={transactionHashes} />}
+        {transactionHashes && <ConfirmationModal transactionHashes={transactionHashes} />}
       </div>
       <Footer />
     </div>
