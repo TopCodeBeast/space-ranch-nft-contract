@@ -2,7 +2,6 @@ import { MbButton } from "mintbase-ui"
 import { StoreThing } from "../controllers/useMarketplaceController";
 
 const Item = ({ item, showModal }: {item: StoreThing, showModal: (item: StoreThing) => void}) => {
-  console.log(item);
   return (
     <div className="bg-slate-900 rounded shadow-lg p-4 relative">
       <img src={item.media} className="w-full h-72 object-cover"></img>

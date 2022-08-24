@@ -7,7 +7,6 @@ import { WalletProvider } from "../services/providers/WalletProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const mjsKey = process.env.NEXT_PUBLIC_MBJS_KEY || "";
-  console.log(mjsKey);
   return (
     <WalletProvider
       network={Network.testnet as Network}

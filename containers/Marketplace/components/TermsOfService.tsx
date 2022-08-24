@@ -29,8 +29,8 @@ const TermsOfService = ({ closeModal, continuePurchase }: { closeModal: () => vo
         <div className="bg-slate-900 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div className="mt-3 ml-2 text-center sm:mt-0 sm:ml-4 sm:text-left">
             <div className="flex flex-row items-center justify-between w-full border-black border-b-2">
-              <h3 className="text-md leading-6 font-medium text-gray" id="modal-title">
-                Terms of Service
+              <h3 className="text-md leading-6 font-medium text-white" id="modal-title">
+                Terms of Purchase
               </h3>
               <button
                 type="button"
@@ -43,9 +43,8 @@ const TermsOfService = ({ closeModal, continuePurchase }: { closeModal: () => vo
                 </svg>
               </button>
             </div>
-                <div className="max-h-52 overflow-y-scroll" onScroll={handleScroll} >
-                    <p>
-                        <strong>Terms of Purchase</strong></p>
+                <div className="max-h-60 overflow-y-scroll" onScroll={handleScroll} >
+                        <br/>
                         <p>Our Terms and Conditions were last updated on [___DATE___].</p>
                         <p>Please read these terms and conditions carefully before using Our Service.</p>
                         <p><strong>Interpretation and Definitions</strong></p>
