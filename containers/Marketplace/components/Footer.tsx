@@ -9,8 +9,8 @@ const Footer = () => {
         </h1>
       </div>
       {/** login/logout with wallet */}
-      <div className="flex items-center mr-2">
-        &nbsp;
+      <div className="flex items-center mr-4">
+        <a href="https://spaceranch.gitbook.io/documentation" target="_blank">Learn more with our Gitbook</a>
       </div>
     </nav>
   )

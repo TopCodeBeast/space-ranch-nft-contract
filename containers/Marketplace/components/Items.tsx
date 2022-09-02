@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { MbTab, MbMenuWrapper, MbDropdownMenu, MbIcon, EIconName } from "mintbase-ui";
 import { Item, LoadingItem } from "./Item";
+import HeroSection  from "./HeroSection";
 import useStoreThingsController, { StoreThing } from "../controllers/useMarketplaceController";
 import useStoreController, { Store } from "../controllers/useStoresController";
+import { MbButton } from "mintbase-ui"
 
-const Items = ({ showModal }: { showModal: (item: StoreThing) => void }) => {
+const Items = ({ showModal, showConversationModal, showDashboardModal }: { showModal: (item: StoreThing) => void, showConversationModal: () => void, showDashboardModal: () => void  }) => {
   const [selectedTab, setSelectedTab] = useState('all');
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedStore, setSelectedStore] = useState('');
@@ -25,6 +27,15 @@ const Items = ({ showModal }: { showModal: (item: StoreThing) => void }) => {
     content: <span>All Stores</span>,
     onClick: () => setSelectedStore('')
   });
+  
+  const scrollToPurchase = () => {
+    const section = document.querySelector( '#purchase-items' );
+    section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+  };
+
+  const openInNewTab = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
   // filter things by store name selected in the dropdown menu
   const filteredThings = things.filter((thing: StoreThing) => {
@@ -74,8 +85,51 @@ const Items = ({ showModal }: { showModal: (item: StoreThing) => void }) => {
           />
         </MbMenuWrapper>
       </div>
-      
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-4 my-12">
+        <div className="bg-slate-900 rounded shadow-lg p-4 relative">
+          <div className="">
+            <div className="text-xl text-white mt-1 font-bold">Purchase Membership</div>
+            <div className="text-sm mt-2">We offer a variety of puchasing options depending on how you would like to contribute, and what future benefits you may want to enjoy. </div>
+          </div>
+          <div className="flex items-center mt-4 justify-center">
+            <MbButton onClick={() => scrollToPurchase()} label={`Take Me There`} />
+          </div>
+        </div>
+
+        <div className="bg-slate-900 rounded shadow-lg p-4 relative">
+          <div className="">
+            <div className="text-xl text-white mt-1 font-bold">Discussion Sign In</div>
+            <div className="text-sm mt-2">We offer a variety of puchasing options depending on how you would like to contribute, and what future benefits you may want to enjoy. </div>
+          </div>
+          <div className="flex items-center mt-4 justify-center">
+            <MbButton onClick={() => showConversationModal()} label={`Take Me There`} />
+          </div>
+        </div>
+
+        <div className="bg-slate-900 rounded shadow-lg p-4 relative">
+          <div className="">
+            <div className="text-xl text-white mt-1 font-bold">Learn More</div>
+            <div className="text-sm mt-2">We offer a variety of puchasing options depending on how you would like to contribute, and what future benefits you may want to enjoy. </div>
+          </div>
+          <div className="flex items-center mt-4 justify-center">
+            <MbButton onClick={() => openInNewTab('https://spaceranch.gitbook.io/documentation')} label={`Take Me There`} />
+          </div>
+        </div>
+
+        <div className="bg-slate-900 rounded shadow-lg p-4 relative">
+          <div className="">
+            <div className="text-xl text-white mt-1 font-bold">Project Dashboard</div>
+            <div className="text-sm mt-2">We offer a variety of puchasing options depending on how you would like to contribute, and what future benefits you may want to enjoy. </div>
+          </div>
+          <div className="flex items-center mt-4 justify-center">
+            <MbButton onClick={() => showDashboardModal()} label={`Take Me There`} />
+          </div>
+        </div>
+      </div>
+      <hr className="style2 ml-8 mr-8 mt-4 shadow-lg"/>
+      <HeroSection />
       {/** grid */}
+      <hr id="purchase-items" className="style2 ml-8 mr-8 shadow-lg"/>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 my-12">
         {loading ? (
           <LoadingItem />

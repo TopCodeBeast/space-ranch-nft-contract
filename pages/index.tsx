@@ -10,10 +10,14 @@ import BuyModal from "../containers/Marketplace/components/BuyModal";
 import MembershipTiers from "../containers/Marketplace/components/MembershipTiers";
 import { StoreThing } from "../containers/Marketplace/controllers/useMarketplaceController";
 import ConfirmationModal from "../containers/Marketplace/components/ConfirmationModal";
+import ConversationModal from "../containers/Marketplace/components/ConversationModal";
+import DashboardModal from "../containers/Marketplace/components/DashboardModal";
 import TermsOfService from "../containers/Marketplace/components/TermsOfService";
 
 const Store: NextPage = () => {
   const [showBuyModal, setShowBuyModal] = useState(false);
+  const [showConversationModal, setShowConversationModal] = useState(false);
+  const [showDashboardModal, setShowDashboardModal] = useState(false);
   const [showTermsModal, setShowTermsModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState({} as StoreThing);
 
@@ -32,6 +36,22 @@ const Store: NextPage = () => {
     setShowBuyModal(false);
   }
 
+  const handleShowConversationModal = () => {
+    setShowConversationModal(true);
+  }
+
+  const handleHideConversationModal = () => {
+    setShowConversationModal(false);
+  }
+
+  const handleShowDashboardModal = () => {
+    setShowDashboardModal(true);
+  }
+
+  const handleHideDashboardModal = () => {
+    setShowDashboardModal(false);
+  }
+
   const handleCloseTermsModal = () => {
     setSelectedItem({} as StoreThing);
     setShowTermsModal(false);
@@ -42,17 +62,16 @@ const Store: NextPage = () => {
   return (
     <div className="flex flex-1 flex-col min-h-screen text-gray-500  bg-slate-900/90">
       <Header />
-      <div className="md:mx-24 mt-4">
-        <HeroSection />
-      </div>
       <div className="flex w-full">
-        <Items showModal={handleOpenTermsModal} />
+        <Items showModal={handleOpenTermsModal} showConversationModal={handleShowConversationModal} showDashboardModal={handleShowDashboardModal}/>
       </div>
       <MembershipTiers />
       <div className="mx-4 md:mx-24 md:mt-4">
         {showTermsModal && <TermsOfService closeModal={handleCloseTermsModal} continuePurchase={handleOpenBuyModal} />}
         {showBuyModal && <BuyModal closeModal={handleCloseBuyModal} item={selectedItem} />}
         {transactionHashes && <ConfirmationModal transactionHashes={transactionHashes} />}
+        {showConversationModal && <ConversationModal closeModal={handleHideConversationModal} />}
+        {showDashboardModal && < DashboardModal closeModal={handleHideDashboardModal} />}
       </div>
       <Footer />
     </div>

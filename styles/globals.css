@@ -11,3 +11,25 @@ button.amount-button {
 .amount-button span{
     margin-top: 2px !important;
 }
+
+hr.style1 { 
+    height: 30px;
+    border-style: solid;
+    border-color: #0f172b;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+
+hr.style2 { 
+    border-style: solid;
+    border-color: #0f172b;
+    border-width: 1px 0 0 0;
+}
+
+hr.style3 { 
+    height: 20px;
+    border-style: solid;
+    border-color: #272e3e;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
