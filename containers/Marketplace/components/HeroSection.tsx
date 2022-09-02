@@ -12,7 +12,7 @@ const HeroSection = () => {
 
         <div className="pl-4 pr-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4 my-12 text-white">
           <div className="text-xl text-white mt-1 font-bold">
-          >>> The Journey Begins Today.<br />
+          &#62;&#62;&#62; The Journey Begins Today.<br />
             Join us on our mission to collaboratively build the future of space exploration and asset managment to Wyoming, under our DAO LLC.
           </div>
           <div className="">
