@@ -117,6 +117,7 @@ export const NearWalletProvider = (props: IWalletProvider) => {
   const addMember = async (name: string, phone: string, email: string, transactionHash: any) => {
       if(wallet){
         const contract = new Contract(
+        // @ts-ignore
         wallet.account(), // the account object that is connecting
         "testtesrrr.sputnikv2.testnet",
         {
