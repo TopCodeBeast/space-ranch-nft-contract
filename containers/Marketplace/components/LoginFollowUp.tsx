@@ -20,6 +20,7 @@ const MembershipTiers = () => {
                     />
                 </div>
             </div>
+            <br/><br/>
         </div>
     </div>
   );

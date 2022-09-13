@@ -70,11 +70,9 @@ const Store: NextPage = () => {
   return (
     <div className="flex flex-1 flex-col min-h-screen text-gray-500  bg-slate-900/90">
       <Header />
-      <LoginFollowUP />
       <div className="flex w-full">
         <Items showModal={handleOpenTermsModal} showConversationModal={handleShowConversationModal} showDashboardModal={handleShowDashboardModal}/>
       </div>
-      <MembershipTiers />
       <div className="mx-4 md:mx-24 md:mt-4">
         {showTermsModal && <TermsOfService closeModal={handleCloseTermsModal} continuePurchase={handleOpenBuyModal} />}
         {showBuyModal && <BuyModal closeModal={handleCloseBuyModal} item={selectedItem} />}
@@ -86,6 +84,7 @@ const Store: NextPage = () => {
           </NearWalletProvider>
         }
       </div>
+      <LoginFollowUP />
       <Footer />
     </div>
   );
