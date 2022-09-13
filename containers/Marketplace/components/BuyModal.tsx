@@ -45,9 +45,6 @@ const BuyModal = ({ closeModal, item }: { closeModal: () => void, item: StoreThi
 
   const price = listThing?.price;
   const amountAvailable = listThing?.tokensListedSaleCounter;
-  console.log(listThing);
-  console.log('########');
-  console.log(item);
 
   const tokensTotal = listThing?.tokensTotal;
   const tokenId = listThing?.tokenId;

@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import Header from "../containers/Marketplace/components/Header";
@@ -13,6 +13,8 @@ import ConfirmationModal from "../containers/Marketplace/components/Confirmation
 import ConversationModal from "../containers/Marketplace/components/ConversationModal";
 import DashboardModal from "../containers/Marketplace/components/DashboardModal";
 import TermsOfService from "../containers/Marketplace/components/TermsOfService";
+import LoginFollowUP from "../containers/Marketplace/components/LoginFollowUp";
+import { NearWalletProvider } from "../services/providers/NearWalletProvider"
 
 const Store: NextPage = () => {
   const [showBuyModal, setShowBuyModal] = useState(false);
@@ -58,10 +60,17 @@ const Store: NextPage = () => {
   }
   const { query } = useRouter();
   const transactionHashes: any = query.transactionHashes;
+  const transactionInfo: any = query.signMeta;
+  let showConfirmationModal = false;
+  if (transactionInfo){
+    showConfirmationModal = (JSON.parse(transactionInfo).type === 'make-offer');
+  } 
+ 
 
   return (
     <div className="flex flex-1 flex-col min-h-screen text-gray-500  bg-slate-900/90">
       <Header />
+      <LoginFollowUP />
       <div className="flex w-full">
         <Items showModal={handleOpenTermsModal} showConversationModal={handleShowConversationModal} showDashboardModal={handleShowDashboardModal}/>
       </div>
@@ -69,9 +78,13 @@ const Store: NextPage = () => {
       <div className="mx-4 md:mx-24 md:mt-4">
         {showTermsModal && <TermsOfService closeModal={handleCloseTermsModal} continuePurchase={handleOpenBuyModal} />}
         {showBuyModal && <BuyModal closeModal={handleCloseBuyModal} item={selectedItem} />}
-        {transactionHashes && <ConfirmationModal transactionHashes={transactionHashes} />}
         {showConversationModal && <ConversationModal closeModal={handleHideConversationModal} />}
         {showDashboardModal && < DashboardModal closeModal={handleHideDashboardModal} />}
+        {showConfirmationModal && 
+          <NearWalletProvider contractAddress="testtesrrr.sputnikv2.testnet">
+            <ConfirmationModal transactionHashes={transactionHashes} transactionInfo={transactionInfo}/>
+          </NearWalletProvider>
+        }
       </div>
       <Footer />
     </div>

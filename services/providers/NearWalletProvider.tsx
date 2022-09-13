@@ -1,4 +1,4 @@
-import { WalletConnection, connect, keyStores } from "near-api-js";
+import { WalletConnection, connect, keyStores, Contract } from "near-api-js";
 import { useRouter } from "next/router";
 import {
   createContext,
@@ -28,6 +28,7 @@ export const WalletContext = createContext<{
   loading: boolean;
   signIn: () => Promise<void>;
   signOut: () => Promise<void>;
+  addMember: (name: string, phone: string, email: string, transactionHash: any, details: any)=> Promise<any>;
 }>({
   wallet: undefined,
   details: {
@@ -39,6 +40,7 @@ export const WalletContext = createContext<{
   loading: true,
   signIn: () => Promise.resolve(),
   signOut: () => Promise.resolve(),
+  addMember: (name: string, phone: string, email: string, transactionHash: any, details: any) => Promise.resolve(),
 });
 
 interface IWalletConsumer {
@@ -52,6 +54,7 @@ interface IWalletConsumer {
   loading: boolean;
   signIn: () => Promise<void>;
   signOut: () => Promise<void>;
+  addMember: (name: string, phone: string, email: string, transactionHash: any, details: any)=> Promise<any>;
 }
 
 export const NearWalletProvider = (props: IWalletProvider) => {
@@ -109,6 +112,40 @@ export const NearWalletProvider = (props: IWalletProvider) => {
 
     setLoading(false);
   };
+  if(wallet){
+    const contract = new Contract(
+      wallet.account(), // the account object that is connecting
+      "testtesrrr.sputnikv2.testnet",
+      {
+        viewMethods: [], // view methods do not change state but usually return a value
+        changeMethods: ["add_proposal"], // change methods modify state
+        sender: wallet.account(), // account object to initialize and sign transactions.
+      }
+    );
+
+  } else {
+    const contract = null;
+  }
+  
+
+  const addMember = async (name: string, phone: string, email: string, transactionHash: any) => {
+    window.localStorage.setItem('forceRedirect', true);
+    contract.add_proposal(
+      {
+        proposal: {
+          "description": "Please Add " + name + " to Council! *--- " + phone + " * *--- " + email + " * *--- " + transactionHash + " *",
+          "kind": {
+            "AddMemberToRole": {
+              "member_id": details.accountId,
+              "role": "council"
+            }
+          }
+        }, // argument name and value - pass empty object if no args required
+      },
+      "300000000000000", // attached GAS (optional),
+      "100000000000000000000000", // attached GAS (optional)
+    );
+  };
 
   const signIn = async () => {
     if (!wallet) {
@@ -143,6 +180,7 @@ export const NearWalletProvider = (props: IWalletProvider) => {
         signIn: signIn,
         signOut: signOut,
         loading: loading,
+        addMember: addMember,
       }}
     >
       {children}
