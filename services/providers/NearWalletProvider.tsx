@@ -112,6 +112,7 @@ export const NearWalletProvider = (props: IWalletProvider) => {
 
     setLoading(false);
   };
+  
   if(wallet){
     const contract = new Contract(
       wallet.account(), // the account object that is connecting
@@ -119,7 +120,7 @@ export const NearWalletProvider = (props: IWalletProvider) => {
       {
         viewMethods: [], // view methods do not change state but usually return a value
         changeMethods: ["add_proposal"], // change methods modify state
-        sender: wallet.account(), // account object to initialize and sign transactions.
+        //sender: wallet.account(), // account object to initialize and sign transactions.
       }
     );
 
