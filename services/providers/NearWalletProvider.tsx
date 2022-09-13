@@ -113,39 +113,37 @@ export const NearWalletProvider = (props: IWalletProvider) => {
     setLoading(false);
   };
   
-  if(wallet){
-    const contract = new Contract(
-      wallet.account(), // the account object that is connecting
-      "testtesrrr.sputnikv2.testnet",
-      {
-        viewMethods: [], // view methods do not change state but usually return a value
-        changeMethods: ["add_proposal"], // change methods modify state
-        //sender: wallet.account(), // account object to initialize and sign transactions.
-      }
-    );
-
-  } else {
-    const contract = null;
-  }
-  
 
   const addMember = async (name: string, phone: string, email: string, transactionHash: any) => {
-    window.localStorage.setItem('forceRedirect', true);
-    contract.add_proposal(
-      {
-        proposal: {
-          "description": "Please Add " + name + " to Council! *--- " + phone + " * *--- " + email + " * *--- " + transactionHash + " *",
-          "kind": {
-            "AddMemberToRole": {
-              "member_id": details.accountId,
-              "role": "council"
+      if(wallet){
+        const contract = new Contract(
+        wallet.account(), // the account object that is connecting
+        "testtesrrr.sputnikv2.testnet",
+        {
+          viewMethods: [], // view methods do not change state but usually return a value
+          changeMethods: ["add_proposal"], // change methods modify state
+          //sender: wallet.account(), // account object to initialize and sign transactions.
+        }
+      );
+  
+    
+      window.localStorage.setItem('forceRedirect', 'true');
+      contract.add_proposal(
+        {
+          proposal: {
+            "description": "Please Add " + name + " to Council! *--- " + phone + " * *--- " + email + " * *--- " + transactionHash + " *",
+            "kind": {
+              "AddMemberToRole": {
+                "member_id": details.accountId,
+                "role": "council"
+              }
             }
-          }
-        }, // argument name and value - pass empty object if no args required
-      },
-      "300000000000000", // attached GAS (optional),
-      "100000000000000000000000", // attached GAS (optional)
-    );
+          }, // argument name and value - pass empty object if no args required
+        },
+        "300000000000000", // attached GAS (optional),
+        "100000000000000000000000", // attached GAS (optional)
+      );
+    }
   };
 
   const signIn = async () => {
