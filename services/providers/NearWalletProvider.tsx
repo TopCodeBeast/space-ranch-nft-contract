@@ -128,6 +128,7 @@ export const NearWalletProvider = (props: IWalletProvider) => {
   
     
       window.localStorage.setItem('forceRedirect', 'true');
+      // @ts-ignore
       contract.add_proposal(
         {
           proposal: {
