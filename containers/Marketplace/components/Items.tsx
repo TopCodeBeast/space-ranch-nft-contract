@@ -89,17 +89,17 @@ const Items = ({ showModal, showConversationModal, showDashboardModal }: { showM
         <div className="bg-slate-900 rounded shadow-lg p-4 relative">
           <div className="">
             <div className="text-xl text-white mt-1 font-bold">Purchase Membership</div>
-            <div className="text-sm mt-2">We offer a variety of puchasing options depending on how you would like to contribute, and what future benefits you may want to enjoy. </div>
+            <div className="text-sm mt-2"></div>
           </div>
           <div className="flex items-center mt-4 justify-center">
-            <MbButton onClick={() => scrollToPurchase()} label={`Take Me There`} />
+            <MbButton onClick={() => scrollToPurchase()} label={`Get Started`} />
           </div>
         </div>
 
         <div className="bg-slate-900 rounded shadow-lg p-4 relative">
           <div className="">
-            <div className="text-xl text-white mt-1 font-bold">Discussion Sign In</div>
-            <div className="text-sm mt-2">We offer a variety of puchasing options depending on how you would like to contribute, and what future benefits you may want to enjoy. </div>
+            <div className="text-xl text-white mt-1 font-bold">Community Discussion</div>
+            <div className="text-sm mt-2"></div>
           </div>
           <div className="flex items-center mt-4 justify-center">
             <MbButton onClick={() => showConversationModal()} label={`Take Me There`} />
@@ -108,21 +108,21 @@ const Items = ({ showModal, showConversationModal, showDashboardModal }: { showM
 
         <div className="bg-slate-900 rounded shadow-lg p-4 relative">
           <div className="">
-            <div className="text-xl text-white mt-1 font-bold">Learn More</div>
-            <div className="text-sm mt-2">We offer a variety of puchasing options depending on how you would like to contribute, and what future benefits you may want to enjoy. </div>
+            <div className="text-xl text-white mt-1 font-bold">Documentation</div>
+            <div className="text-sm mt-2"></div>
           </div>
           <div className="flex items-center mt-4 justify-center">
-            <MbButton onClick={() => openInNewTab('https://spaceranch.gitbook.io/documentation')} label={`Take Me There`} />
+            <MbButton onClick={() => openInNewTab('https://spaceranch.gitbook.io/documentation')} label={`Learn More`} />
           </div>
         </div>
 
         <div className="bg-slate-900 rounded shadow-lg p-4 relative">
           <div className="">
             <div className="text-xl text-white mt-1 font-bold">Project Dashboard</div>
-            <div className="text-sm mt-2">We offer a variety of puchasing options depending on how you would like to contribute, and what future benefits you may want to enjoy. </div>
+            <div className="text-sm mt-2"></div>
           </div>
           <div className="flex items-center mt-4 justify-center">
-            <MbButton onClick={() => showDashboardModal()} label={`Take Me There`} />
+            <MbButton onClick={() => showDashboardModal()} label={`Sign In`} />
           </div>
         </div>
       </div>
