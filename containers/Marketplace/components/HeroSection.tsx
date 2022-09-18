@@ -19,7 +19,7 @@ const HeroSection = () => {
             <span className="text-white">The SpaceRanch Membership is a mechanism for governance and applications built for the SpaceRanch ecosystem, which includes access to the physical properties and digital immersive environments.</span>
           </div>
           <div className="">
-            <span className="text-white">There are five ranks which represent different teirs of opportunities and responsibilities within the organization. Climb the ranks by completing bounties and participating in the SpaceRanch.</span> 
+            <span className="text-white">There are five ranks which represent different tiers of opportunities and responsibilities within the organization. Climb the ranks by completing bounties and participating in the SpaceRanch.</span> 
           </div>
         </div>
       </div>
